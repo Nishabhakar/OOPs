@@ -1,39 +1,37 @@
-#include <iostream>
-using namespace std;
-float power(float  m, int n=2) // here n is the base default value 2
+#include <iostream.h>
+#include <math.h>
+float power(float num, float pow)
 {
-        long double power = 1;
-    int i;
-     /* Multiply base, exponent times*/
-    for(i=1; i<=n; i++)
+    float  temp=num;
+    while(pow>1)
     {
-        power = power * m;
+        num*=temp;
+        pow--;
     }
-    return power;
-  
-   }
-   float power( int n=4,float m=2.0)
+    return num;
+}
+float power( float num,float pow, float  temp)
 {
-        long double power = 1;
-    int i;
-         for(i=1; i<=n; i++)
-    {
-        power = power * m;
-    }
-    return power;
-
-   
-   } 
-   void display()
-   {
-	cout << " power = "<<power(3.0,3);  //  output 27 output
-	cout <<" POWER is ="<<power(3); // output...8
-	cout <<"\n\t POWER = "<<power();   //output ...16
- 
-   }
-int main()
-{ 
-	display();
-    return 0;
+    if(pow==1)
+        return num;
+    return power(num*temp,pow-1,temp);
+}
+void display(float data)
+{
+    cout<<data;
 }
 
+int main()
+{
+    
+    float num,pow,data,result,res;
+    cout<<"enter number and power  respectively \n";
+    cin>>num>>pow;
+    cout<<"result with default power :\n";
+    result =power(num,pow);
+    display(result);
+    cout<<"\nresult with entered power:\n";
+    res =power(num,pow,num);
+    display(res);
+    return 0;
+}
